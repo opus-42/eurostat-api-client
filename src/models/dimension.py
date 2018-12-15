@@ -85,14 +85,35 @@ class Category(BaseItem):
 
 
 class Dimension(BaseItem):
+    """Represent a dimension item
+
+    Parameters
+    ----------
+    id : String
+        See BaseItem documentation
+    index : Integer
+        See BaseItem documentation
+    label : String
+        See BaseItem documentation
+
+    Attributes
+    ----------
+    categories : ItemList
+        List of categories related to the dimension
+
+    """
 
     def __init__(self, id, index, label):
         super().__init__(id, index, label)
-        self.categories = []
+        self.categories = ItemList()
 
     @property
-    def category_counts(self):
-        return len(self.categories)
+    def categories(self):
+        return self._categories
+
+    @categories.setter
+    def categories(self, value):
+        self._categories = value
 
     def add_category(self, category):
         """Add a category to the dimension
@@ -109,4 +130,36 @@ class Dimension(BaseItem):
         """
 
         # TO DO : there may be some position checks to add
-        self.categories.append(category)
+        self._categories.append(category)
+
+    @classmethod
+    def create_from_json(cls, id, index, json):
+        """Create a dimension from json.
+
+        Parameters
+        ----------
+        id : String
+            See BaseItem documentation
+        index : Integer
+            See BaseItem documentation
+        json : Dict
+            Json part of the dimension, containing category
+
+        Returns
+        -------
+        Dimension
+            Return a dimension object
+        """
+
+        label = json.get('label')
+        dimension = cls(id, index, label)
+        category = json.get('category')
+        index = category.get('index')
+        for index, id in [(k, v) for k, v in sorted(zip(
+            map(lambda x: int(x), index.values()),
+            index.keys()
+        ))]:
+            dimension_label = category.get('label').get(id)
+            dimension_category = Category(id, index, dimension_label)
+            dimension.add_category(dimension_category)
+        return dimension
