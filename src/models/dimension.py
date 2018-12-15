@@ -54,6 +54,18 @@ class BaseItem(object):
         self._label = value
 
 
+class ItemList(list):
+
+    def __setitem__(self, key, value):
+        if not isinstance(value, BaseItem):
+            raise ValueError('Items must be Base Item')
+        super.__setitem__(key, value)
+
+    @property
+    def count(self):
+        return self.__len__()
+
+
 class Category(BaseItem):
     """Represent a category item with a dimension.
 
@@ -70,3 +82,31 @@ class Category(BaseItem):
 
     def __init__(self, id, index, label):
         super().__init__(id, index, label)
+
+
+class Dimension(BaseItem):
+
+    def __init__(self, id, index, label):
+        super().__init__(id, index, label)
+        self.categories = []
+
+    @property
+    def category_counts(self):
+        return len(self.categories)
+
+    def add_category(self, category):
+        """Add a category to the dimension
+
+        Parameters
+        ----------
+        category : Category
+            Category to add to the list of category
+
+        Returns
+        -------
+        None
+
+        """
+
+        # TO DO : there may be some position checks to add
+        self.categories.append(category)
