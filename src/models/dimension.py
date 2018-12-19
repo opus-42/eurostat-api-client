@@ -103,9 +103,19 @@ class Dimension(BaseItem):
 
     """
 
-    def __init__(self, id, index, label):
+    def __init__(self, id, index, label, size):
         super().__init__(id, index, label)
+        self.size = size
         self.categories = ItemList()
+
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    @property_is_int()
+    def size(self, value):
+        self._size = value
 
     @property
     def categories(self):
@@ -133,7 +143,7 @@ class Dimension(BaseItem):
         self._categories.append(category)
 
     @classmethod
-    def create_from_json(cls, id, index, json):
+    def create_from_json(cls, id, index, size, json):
         """Create a dimension from json.
 
         Parameters
@@ -152,7 +162,7 @@ class Dimension(BaseItem):
         """
 
         label = json.get('label')
-        dimension = cls(id, index, label)
+        dimension = cls(id, index, label, size)
         category = json.get('category')
         index = category.get('index')
         for index, id in [(k, v) for k, v in sorted(zip(

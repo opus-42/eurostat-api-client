@@ -50,7 +50,8 @@ class TestDimension(unittest.TestCase):
         id = 'ID0'
         index = 4
         label = 'label with text'
-        dimension = Dimension(id, index, label)
+        size = 2
+        dimension = Dimension(id, index, label, size)
         category = Category(id, index,  label)
         self.assertEqual(dimension.categories.count, 0)
         dimension.add_category(category)
@@ -72,9 +73,11 @@ class TestDimension(unittest.TestCase):
         }
         id = 'ID0'
         index = 4
+        size = 5
         label = 'time'
 
-        dimension = Dimension.create_from_json(id, index, json)
+        dimension = Dimension.create_from_json(id, index, size, json)
         self.assertEqual(dimension.categories.count, 2)
         self.assertEqual(dimension.label, label)
+        self.assertEqual(dimension.size, size)
         self.assertEqual(dimension.categories[0].label, 'test')
