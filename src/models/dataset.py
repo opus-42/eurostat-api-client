@@ -1,6 +1,16 @@
 from .dimension import ItemList
+from functools import reduce
 from src.utils.property_decorators import property_is_string,\
     property_is_datetime
+
+
+def dimension_list_size(item_list):
+    if item_list.count == 0:
+        return 1
+    elif item_list.count == 1:
+        return item_list[0].size
+    else:
+        return reduce(lambda x, y: x * y, [i.size for i in item_list])
 
 
 class Dataset(object):
@@ -117,3 +127,7 @@ class Dataset(object):
 
         # TO DO : there may be some position checks to add
         self._dimensions.append(dimension)
+
+    @property
+    def total_size(self):
+        pass
