@@ -14,4 +14,10 @@ class DimensionListSizeTest(unittest.TestCase):
         self.assertEqual(dimension_list_size(item_list), 2)
         dimension2 = Dimension('1', 4, 'label1', 7)
         item_list.append(dimension2)
-        self.assertEqual(dimension_list_size(item_list),14)
+        self.assertEqual(dimension_list_size(item_list), 14)
+
+
+class DatasetUnitTest(unittest.TestCase):
+    """Unit test for the Dataset List Size Calculations."""
+
+    pass
