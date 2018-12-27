@@ -2,7 +2,8 @@ from .dimension import ItemList
 from functools import reduce
 from src.utils.property_decorators import property_is_string,\
     property_is_datetime
-
+from .dimension import Dimension
+from datetime import datetime
 
 def dimension_list_size(item_list):
     if item_list.count == 0:
@@ -130,4 +131,61 @@ class Dataset(object):
 
     @property
     def total_size(self):
-        pass
+        return dimension_list_size(self._dimensions)
+
+    def add_values(self, value_dict):
+        if not isinstance(value_dict, dict):
+            raise ValueError("value_dict must be an instance of Dictonary")
+
+        elif len(value_dict.items()) == self.total_size:
+            self._values = [v for k, v in sorted(value_dict.items())]
+
+        else:
+            values = []
+            for i in range(self.total_size):
+                v = value_dict.get(i, None)
+                values.append(v)
+            self._values = values
+
+    @classmethod
+    def create_from_json(cls, json):
+        extension = json.get('extension')
+        if not extension or isinstance(extension, dict):
+            raise ValueError("Json is not conformed. \
+             Malformed extension field")
+
+        if not json.get("class") == 'dataset':
+            raise ValueError("Json is not conformed. \
+            Class field is not defined or value not equal to dataset")
+
+        id = extension.get("datasetId")
+        version = json.get("version")
+        lang = extension.get("lang")
+        source = json.get("source")
+        with json.get("updated") as u:
+            updated = datetime.strptime(u, '%Y-%m-%D')
+        label = json.get("label")
+        dataset = cls.__init__(
+            id,
+            version,
+            lang,
+            source,
+            updated,
+            label
+        )
+
+        ids = json.get('id')
+        if not ids or isinstance(ids, dict):
+            raise ValueError("Json is not conformed. \
+            Dimensions are not defined.")
+
+        sizes = json.get('size')
+        dimensions = json.get('dimension')
+        for k, v in sorted(dimensions.items()):
+            dimension = Dimension.create_from_json(
+                v,
+                k,
+                sizes[v],
+                dimensions.get(v)
+            )
+            dataset.add_dimension(dimension)

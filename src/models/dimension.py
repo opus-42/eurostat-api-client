@@ -95,6 +95,8 @@ class Dimension(BaseItem):
         See BaseItem documentation
     label : String
         See BaseItem documentation
+    size : Integer
+        Size of the dimension
 
     Attributes
     ----------
