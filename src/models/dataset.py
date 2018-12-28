@@ -4,6 +4,8 @@ from src.utils.property_decorators import property_is_string,\
     property_is_datetime
 from .dimension import Dimension
 from datetime import datetime
+import pandas as pd
+
 
 def dimension_list_size(item_list):
     if item_list.count == 0:
@@ -112,6 +114,10 @@ class Dataset(object):
     def label(self, value):
         self._label = value
 
+    @property
+    def dimensions(self):
+        return self._dimensions
+
     def add_dimension(self, dimension):
         """Add a dimension to the dataset
 
@@ -134,6 +140,18 @@ class Dataset(object):
         return dimension_list_size(self._dimensions)
 
     def add_values(self, value_dict):
+        """Add list of value to the dataset object.
+
+        Parameters
+        ----------
+        value_dict : type
+            Dictionary of values
+
+        Returns
+        -------
+        None
+
+        """
         if not isinstance(value_dict, dict):
             raise ValueError("value_dict must be an instance of Dictonary")
 
@@ -149,10 +167,22 @@ class Dataset(object):
 
     @classmethod
     def create_from_json(cls, json):
+        """Create set from json.
+
+        Parameters
+        ----------
+        json : type
+            Json containing the dataset object.
+
+        Returns
+        -------
+        Dataset
+            Return dataset
+        """
         extension = json.get('extension')
-        if not extension or isinstance(extension, dict):
+        if not (extension and isinstance(extension, dict)):
             raise ValueError("Json is not conformed. \
-             Malformed extension field")
+            Malformed extension field")
 
         if not json.get("class") == 'dataset':
             raise ValueError("Json is not conformed. \
@@ -162,10 +192,10 @@ class Dataset(object):
         version = json.get("version")
         lang = extension.get("lang")
         source = json.get("source")
-        with json.get("updated") as u:
-            updated = datetime.strptime(u, '%Y-%m-%D')
+        updated_raw = json.get("updated")
+        updated = datetime.strptime(updated_raw, '%Y-%m-%d')
         label = json.get("label")
-        dataset = cls.__init__(
+        dataset = cls(
             id,
             version,
             lang,
@@ -175,17 +205,44 @@ class Dataset(object):
         )
 
         ids = json.get('id')
-        if not ids or isinstance(ids, dict):
+        if not (ids and isinstance(ids, list)):
             raise ValueError("Json is not conformed. \
             Dimensions are not defined.")
 
         sizes = json.get('size')
         dimensions = json.get('dimension')
-        for k, v in sorted(dimensions.items()):
+        for k, v in zip(range(len(ids)), ids):
             dimension = Dimension.create_from_json(
                 v,
                 k,
-                sizes[v],
+                sizes[k],
                 dimensions.get(v)
             )
             dataset.add_dimension(dimension)
+        values = json.get('value')
+        dataset.add_values(values)
+        return dataset
+
+    def to_dataframe(self):
+        """Convert dataset to a pandas dataframe object.
+
+        Returns
+        -------
+        Dataframe
+            Dataframe reprentation
+        """
+        dataframe = pd.DataFrame()
+        dataframe['values'] = self._values
+        for dimension in self.dimensions:
+            labels = list(map(lambda c: c.label, dimension.categories))
+            self.dimensions[(dimension.index + 1):]
+            repeat_elements = dimension_list_size(
+                ItemList(self.dimensions[(dimension.index + 1):])
+                )
+            repeat_blocks = dimension_list_size(
+                ItemList(self.dimensions[:dimension.index]))
+            labels_block = []
+            for l in labels:
+                labels_block += [l]*repeat_elements
+            dataframe[dimension.id] = labels_block * repeat_blocks
+        return dataframe
