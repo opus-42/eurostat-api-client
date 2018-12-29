@@ -1,6 +1,7 @@
 import unittest
-from src.utils.property_decorators import property_is_boolean, \
-    property_is_int, property_is_string
+import datetime
+from eurostatapiclient.utils.property_decorators import property_is_boolean, \
+    property_is_int, property_is_string, property_is_datetime
 
 
 class TestBooleanDecorator(unittest.TestCase):
@@ -39,6 +40,45 @@ class TestBooleanDecorator(unittest.TestCase):
 
         some_object = SomeObject(True)
         self.assertEqual(bool(some_object.value), True)
+
+
+class TestDatetimeDecorator(unittest.TestCase):
+    """Unit test for the Datetime property decorator."""
+
+    def test_value_error(self):
+        class SomeObject(object):
+            def __init__(self, value):
+                self.value = value
+
+            @property
+            def value(self):
+                return self._value
+
+            @value.setter
+            @property_is_datetime
+            def value(self, value):
+                self._value = value
+
+        self.assertRaises(ValueError, SomeObject, 3)
+        self.assertRaises(ValueError, SomeObject, 'string')
+
+    def test_value_assignation(self):
+        class SomeObject(object):
+            def __init__(self, value):
+                self.value = value
+
+            @property
+            def value(self):
+                return self._value
+
+            @value.setter
+            @property_is_datetime
+            def value(self, value):
+                self._value = value
+
+        ts = datetime.datetime(2018, 1, 1)
+        some_object = SomeObject(ts)
+        self.assertEqual(some_object.value, ts)
 
 
 class TestStringDecorator(unittest.TestCase):

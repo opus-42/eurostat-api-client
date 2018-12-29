@@ -11,11 +11,12 @@
 
 
 from functools import wraps
+from datetime import datetime
 
 
 def property_is_boolean(func):
     """
-    Define porperty as a Boolean.
+    Define property as a Boolean.
     and raises a ValueError when value passed to the setter
     is not a Boolean.
     """
@@ -30,7 +31,7 @@ def property_is_boolean(func):
 
 def property_is_string(func):
     """
-    Define porperty as a String.
+    Define property as a String.
     and raises a ValueError when value passed to the setter
     is not a String.
     """
@@ -38,6 +39,21 @@ def property_is_string(func):
     def wrapper(self, value):
         if not isinstance(value, str):
             error = "String expected for {0} flag.".format(func.__name__)
+            raise ValueError(error)
+        return func(self, value)
+    return wrapper
+
+
+def property_is_datetime(func):
+    """
+    Define property as a Datetime.
+    and raises a ValueError when value passed to the setter
+    is not a Datetime.
+    """
+    @wraps(func)
+    def wrapper(self, value):
+        if not isinstance(value, datetime):
+            error = "Datetime expected for {0} flag.".format(func.__name__)
             raise ValueError(error)
         return func(self, value)
     return wrapper
