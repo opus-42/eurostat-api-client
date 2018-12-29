@@ -1,6 +1,6 @@
 from .dimension import ItemList
 from functools import reduce
-from src.utils.property_decorators import property_is_string,\
+from ..utils.property_decorators import property_is_string,\
     property_is_datetime
 from .dimension import Dimension
 from datetime import datetime
@@ -234,7 +234,7 @@ class Dataset(object):
         dataframe = pd.DataFrame()
         dataframe['values'] = self._values
         for dimension in self.dimensions:
-            labels = list(map(lambda c: c.label, dimension.categories))
+            labels = list(map(lambda c: c.id, dimension.categories))
             self.dimensions[(dimension.index + 1):]
             repeat_elements = dimension_list_size(
                 ItemList(self.dimensions[(dimension.index + 1):])

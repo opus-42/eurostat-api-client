@@ -1,4 +1,4 @@
-from src.utils.property_decorators import property_is_int, property_is_string
+from ..utils.property_decorators import property_is_int, property_is_string
 
 
 class BaseItem(object):

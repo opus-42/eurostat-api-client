@@ -1,4 +1,4 @@
-from src.models.dimension import Category, BaseItem, ItemList, \
+from eurostatapiclient.models.dimension import Category, BaseItem, ItemList, \
     Dimension
 import unittest
 

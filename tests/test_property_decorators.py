@@ -1,6 +1,6 @@
 import unittest
 import datetime
-from src.utils.property_decorators import property_is_boolean, \
+from eurostatapiclient.utils.property_decorators import property_is_boolean, \
     property_is_int, property_is_string, property_is_datetime
 
 

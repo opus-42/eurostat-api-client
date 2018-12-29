@@ -1,7 +1,7 @@
-from src.models.dataset import dimension_list_size
-from src.models.dimension import ItemList, Dimension
+from eurostatapiclient.models.dataset import dimension_list_size
+from eurostatapiclient.models.dimension import ItemList, Dimension
 import unittest
-from src.models.dataset import Dataset
+from eurostatapiclient.models.dataset import Dataset
 import datetime
 import json
 import os
