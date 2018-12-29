@@ -42,6 +42,35 @@ class DatasetUnitTest(unittest.TestCase):
         self.assertEqual(dataset.label, 'Some label')
         self.assertEqual(dataset.source, 'Eurostat')
 
+    def test_add_values(self):
+        updated = datetime.datetime(2018, 1, 1)
+        dataset = Dataset('id',
+                          'v2.0',
+                          'FR',
+                          'Eurostat',
+                          updated,
+                          'Some label')
+        dimension1 = Dimension('1', 0, 'label1', 2)
+        dimension2 = Dimension('2', 1, 'label2', 5)
+        dataset.add_dimension(dimension1)
+        dataset.add_dimension(dimension2)
+        values = {
+            '1': 2,
+            '0': 1,
+            '2': 1,
+            '4': 11,
+            '5': 10,
+            '6': 2,
+            '7': 3,
+            '9': 4,
+        }
+        dataset.add_values(values)
+        self.assertEqual(dataset._values[0], 1)
+        self.assertEqual(dataset._values[1], 2)
+        self.assertEqual(dataset._values[5], 10)
+        self.assertEqual(dataset._values[3], None)
+        self.assertEqual(dataset._values[8], None)
+
     def test_dataset_from_json(self):
         with open(ADD_DATASET, 'r') as f:
             dataset_json = json.load(f)
