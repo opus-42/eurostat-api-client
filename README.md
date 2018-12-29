@@ -1,6 +1,6 @@
 # Eurostat API Client (Python)
 
-Use the Eurostat API Client to quickly retrieve json data from Eurostat REST service in a convenient format. A simple description of the service can be found [here](https://ec.europa.eu/eurostat/web/json-and-unicode-web-services/about-this-service)
+Use the Eurostat API Client to quickly retrieve json data from Eurostat REST service and convert it to a pandas DataFrame. A simple description of the service can be found [here](https://ec.europa.eu/eurostat/web/json-and-unicode-web-services/about-this-service)
 
 ## Installation
 
@@ -44,6 +44,6 @@ print(filtered_dataframe.head())
 
 ## Contributions
 
-Contribution are welcome !
+Contributions are welcome !
 
-Feel free to suggest modifications/enhancements in the issue section, or to create a pull request
+Feel free to suggest modifications/enhancements in the "issues" section, or to create a pull request
