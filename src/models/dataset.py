@@ -161,7 +161,7 @@ class Dataset(object):
         else:
             values = []
             for i in range(self.total_size):
-                v = value_dict.get(i, None)
+                v = value_dict.get(str(i), None)
                 values.append(v)
             self._values = values
 

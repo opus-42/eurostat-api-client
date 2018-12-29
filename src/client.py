@@ -1,5 +1,6 @@
-import request
+import requests
 from .utils.property_decorators import property_is_string
+from .models.dataset import Dataset
 
 
 class EurostatAPIClient(object):
@@ -38,8 +39,14 @@ class EurostatAPIClient(object):
         self._language = value
 
     @property
-    def api_url():
-        return '{0}/{1}/{2}'.format(BASE_URL, version, json, en)
+    def api_url(self):
+        return '{0}/{1}/{2}/{3}'.format(self.BASE_URL,
+                                        self.version,
+                                        self.response_type,
+                                        self.language)
 
-    def get_dataset(id, params={}):
-        pass
+    def get_dataset(self, id, params={}):
+        request_url = '{0}/{1}'.format(self.api_url, id)
+        response = requests.get(request_url, params=params)
+        response.raise_for_status()
+        return Dataset.create_from_json(response.json())
