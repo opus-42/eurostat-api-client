@@ -12,7 +12,7 @@ with open(os.path.join(PACKAGE_DIR, "README.md"), "r") as fh:
 
 setuptools.setup(
     name="eurostatapiclient",
-    version="0.2.0",
+    version="0.2.1",
     author="Emmanuel Bavoux",
     author_email="emmanuel.bavoux@gmail.com",
     description="A simple Eurostat Rest API client",
@@ -22,7 +22,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests"]),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Development Status :: 3 - Beta",
+        "Development Status :: 4 - Beta",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
