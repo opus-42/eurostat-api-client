@@ -4,6 +4,28 @@ from .models.dataset import Dataset
 
 
 class EurostatAPIClient(object):
+    """Represent an API client that handle Dataset Request
+    and return dataset object.
+
+    Parameters
+    ----------
+    version : String
+        version of the API
+    response_type : String
+        type of file returned (should be 'json')
+    language : String
+        2 letter code for the language of the label and metadata.
+        Should be one of these these : fr, en, de
+
+    Attributes
+    ----------
+    BASE_URL : String
+        Root Url of the Eurostat API
+    version
+    response_type
+    language
+
+    """
     BASE_URL = 'https://ec.europa.eu/eurostat/wdds/rest/data'
 
     def __init__(self, version, response_type, language):

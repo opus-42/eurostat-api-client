@@ -8,6 +8,19 @@ import pandas as pd
 
 
 def dimension_list_size(item_list):
+    """Compute the total size of an dimension list.
+
+    Parameters
+    ----------
+    item_list : ItemList
+        The Dimension List to compute the size of.
+
+    Returns
+    -------
+    Integer
+        Size of the passed Dimension List
+
+    """
     if item_list.count == 0:
         return 1
     elif item_list.count == 1:

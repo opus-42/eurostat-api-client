@@ -55,6 +55,7 @@ class BaseItem(object):
 
 
 class ItemList(list):
+    """List of BaseItem (or any sub-class)"""
 
     def __setitem__(self, key, value):
         if not isinstance(value, BaseItem):
