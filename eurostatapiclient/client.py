@@ -27,6 +27,7 @@ class EurostatAPIClient(object):
 
     """
     BASE_URL = 'https://ec.europa.eu/eurostat/wdds/rest/data'
+    session = requests.Session()
 
     def __init__(self, version, response_type, language):
         self.version = version
@@ -69,6 +70,6 @@ class EurostatAPIClient(object):
 
     def get_dataset(self, id, params={}):
         request_url = '{0}/{1}'.format(self.api_url, id)
-        response = requests.get(request_url, params=params)
+        response = self.session.get(request_url, params=params)
         response.raise_for_status()
         return Dataset.create_from_json(response.json())

@@ -1,0 +1,263 @@
+{
+    "version": "2.0",
+    "label": "GDP and main components (output, expenditure and income)",
+    "href": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/nama_10_gdp?precision=1&na_item=B1GQ&unit=CP_MEUR&time=2010&time=2011",
+    "source": "Eurostat",
+    "updated": "2019-01-07",
+    "status": {
+        "29": "p",
+        "52": ":",
+        "53": ":"
+    },
+    "extension": {
+        "datasetId": "nama_10_gdp",
+        "lang": "EN",
+        "description": null,
+        "subTitle": null,
+        "status": {
+            "label": {
+                "p": "provisional",
+                ":": "not available"
+            }
+        }
+    },
+    "class": "dataset",
+    "value": {
+        "0": 8996.6,
+        "1": 9268.3,
+        "2": 295896.6,
+        "3": 310128.7,
+        "4": 12968.9,
+        "5": 13411.8,
+        "6": 365100.5,
+        "7": 379106.3,
+        "8": 38230.5,
+        "9": 41292,
+        "10": 441085.7,
+        "11": 504020.9,
+        "12": 19299.5,
+        "13": 19731,
+        "14": 156718.2,
+        "15": 164040.5,
+        "16": 2580060,
+        "17": 2703120,
+        "18": 243165.4,
+        "19": 247879.9,
+        "20": 9491671.6,
+        "21": 9754126.3,
+        "22": 9361942.9,
+        "23": 9603364.1,
+        "24": 9552204.5,
+        "25": 9805603.8,
+        "26": 14716.5,
+        "27": 16667.6,
+        "28": 226031.4,
+        "29": 207028.9,
+        "30": 1080935,
+        "31": 1070449,
+        "32": 11825125.1,
+        "33": 12151584.3,
+        "34": 10990991.1,
+        "35": 11322565.9,
+        "36": 12841529.7,
+        "37": 13217466.1,
+        "38": 187100,
+        "39": 196869,
+        "40": 1995289,
+        "41": 2058369,
+        "42": 45155.5,
+        "43": 44825.5,
+        "44": 98826,
+        "45": 101317,
+        "46": 167721.2,
+        "47": 171140.2,
+        "48": 10332.4,
+        "49": 10889,
+        "50": 1604514.5,
+        "51": 1637462.9,
+        "54": 28027.7,
+        "55": 31275.3,
+        "56": 40177.8,
+        "57": 43164.6,
+        "58": 17788.6,
+        "59": 20202.3,
+        "60": 3125.1,
+        "61": 3264.8,
+        "62": 7108.3,
+        "63": 7544.2,
+        "64": 6599.5,
+        "65": 6835.4,
+        "66": 639187,
+        "67": 650359,
+        "68": 324043.2,
+        "69": 358733.7,
+        "70": 361803.9,
+        "71": 380241.7,
+        "72": 179929.8,
+        "73": 176166.6,
+        "74": 125408.8,
+        "75": 131925.4,
+        "76": 31545.8,
+        "77": 35431.7,
+        "78": 369478.2,
+        "79": 405440.1,
+        "80": 36252.4,
+        "81": 36896.3,
+        "82": 67577.3,
+        "83": 70627.2,
+        "84": 581023.8,
+        "85": 596491.2,
+        "86": 1850538.6,
+        "87": 1894900.2,
+        "88": 4402,
+        "89": 4814.5
+    },
+    "dimension": {
+        "unit": {
+            "label": "unit",
+            "category": {
+                "index": {
+                    "CP_MEUR": 0
+                },
+                "label": {
+                    "CP_MEUR": "Current prices, million euro"
+                }
+            }
+        },
+        "na_item": {
+            "label": "na_item",
+            "category": {
+                "index": {
+                    "B1GQ": 0
+                },
+                "label": {
+                    "B1GQ": "Gross domestic product at market prices"
+                }
+            }
+        },
+        "geo": {
+            "label": "geo",
+            "category": {
+                "index": {
+                    "AL": 0,
+                    "AT": 1,
+                    "BA": 2,
+                    "BE": 3,
+                    "BG": 4,
+                    "CH": 5,
+                    "CY": 6,
+                    "CZ": 7,
+                    "DE": 8,
+                    "DK": 9,
+                    "EA": 10,
+                    "EA12": 11,
+                    "EA19": 12,
+                    "EE": 13,
+                    "EL": 14,
+                    "ES": 15,
+                    "EU15": 16,
+                    "EU27_2019": 17,
+                    "EU28": 18,
+                    "FI": 19,
+                    "FR": 20,
+                    "HR": 21,
+                    "HU": 22,
+                    "IE": 23,
+                    "IS": 24,
+                    "IT": 25,
+                    "LI": 26,
+                    "LT": 27,
+                    "LU": 28,
+                    "LV": 29,
+                    "ME": 30,
+                    "MK": 31,
+                    "MT": 32,
+                    "NL": 33,
+                    "NO": 34,
+                    "PL": 35,
+                    "PT": 36,
+                    "RO": 37,
+                    "RS": 38,
+                    "SE": 39,
+                    "SI": 40,
+                    "SK": 41,
+                    "TR": 42,
+                    "UK": 43,
+                    "XK": 44
+                },
+                "label": {
+                    "AL": "Albania",
+                    "AT": "Austria",
+                    "BA": "Bosnia and Herzegovina",
+                    "BE": "Belgium",
+                    "BG": "Bulgaria",
+                    "CH": "Switzerland",
+                    "CY": "Cyprus",
+                    "CZ": "Czechia",
+                    "DE": "Germany (until 1990 former territory of the FRG)",
+                    "DK": "Denmark",
+                    "EA": "Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+                    "EA12": "Euro area (12 countries)",
+                    "EA19": "Euro area (19 countries)",
+                    "EE": "Estonia",
+                    "EL": "Greece",
+                    "ES": "Spain",
+                    "EU15": "European Union (15 countries)",
+                    "EU27_2019": "European Union (without United Kingdom)",
+                    "EU28": "European Union (current composition)",
+                    "FI": "Finland",
+                    "FR": "France",
+                    "HR": "Croatia",
+                    "HU": "Hungary",
+                    "IE": "Ireland",
+                    "IS": "Iceland",
+                    "IT": "Italy",
+                    "LI": "Liechtenstein",
+                    "LT": "Lithuania",
+                    "LU": "Luxembourg",
+                    "LV": "Latvia",
+                    "ME": "Montenegro",
+                    "MK": "Former Yugoslav Republic of Macedonia, the",
+                    "MT": "Malta",
+                    "NL": "Netherlands",
+                    "NO": "Norway",
+                    "PL": "Poland",
+                    "PT": "Portugal",
+                    "RO": "Romania",
+                    "RS": "Serbia",
+                    "SE": "Sweden",
+                    "SI": "Slovenia",
+                    "SK": "Slovakia",
+                    "TR": "Turkey",
+                    "UK": "United Kingdom",
+                    "XK": "Kosovo (under United Nations Security Council Resolution 1244/99)"
+                }
+            }
+        },
+        "time": {
+            "label": "time",
+            "category": {
+                "index": {
+                    "2010": 0,
+                    "2011": 1
+                },
+                "label": {
+                    "2010": "2010",
+                    "2011": "2011"
+                }
+            }
+        }
+    },
+    "id": [
+        "unit",
+        "na_item",
+        "geo",
+        "time"
+    ],
+    "size": [
+        1,
+        1,
+        45,
+        2
+    ]
+}
