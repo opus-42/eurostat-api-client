@@ -7,7 +7,7 @@ Use the Eurostat API Client to quickly retrieve json data from Eurostat REST ser
 Install Eurostat API Client using pip.
 
 ```bash
-pip install eurostat-api-client
+pip install eurostatapiclient
 ```
 
 ## Quick start
