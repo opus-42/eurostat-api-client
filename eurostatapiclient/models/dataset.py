@@ -17,7 +17,7 @@ def dimension_list_size(item_list):
 
     Returns
     -------
-    Integer*
+    Integer
         Size of the passed Dimension List
 
     """
