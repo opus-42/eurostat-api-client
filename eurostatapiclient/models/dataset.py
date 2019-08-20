@@ -169,7 +169,7 @@ class Dataset(object):
             raise ValueError("value_dict must be an instance of Dictonary")
 
         elif len(value_dict.items()) == self.total_size:
-            self._values = [v for k, v in sorted(value_dict.items())]
+            self._values = [v for k, v in value_dict.items()]
 
         else:
             values = []
