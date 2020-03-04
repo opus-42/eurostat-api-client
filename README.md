@@ -27,6 +27,10 @@ FORMAT = 'json'
 LANGUAGE = 'en'
 
 client = EurostatAPIClient(VERSION, FORMAT, LANGUAGE)
+
+# Optionnal : working behing a proxy :
+# client.set_proxy({'http':'my.proxy.com/8080', 'https':'my.proxy.com/8080'})
+
 dataset = client.get_dataset('tps00001')
 print(dataset.label)
 
