@@ -41,6 +41,21 @@ print(dataframe.head())
 params = {
     'geo': 'DE',
 }
+
+# Note that some keys may be repeated in eurostat's api
+# In that case, you will want to pass params as a list of tuples
+# ex. : 
+# params = [
+#  ('siec', 'TOTAL'),
+#  ('precision', '1'),
+#  ('unit', 'KTOE'),
+#  ('nrg_bal', 'AFC'),
+#  ('nrg_bal', 'DL'),
+#  ('nrg_bal', 'EXP'),
+#  ('nrg_bal', 'FC_E'),
+#  ('nrg_bal', 'FEC2020-2030')]
+# filtered_dataset = client.get_dataset('nrg_bal_c', params=params)
+
 filtered_dataset = client.get_dataset('tps00001', params=params)
 filtered_dataframe = filtered_dataset.to_dataframe()
 print(filtered_dataframe.head())
