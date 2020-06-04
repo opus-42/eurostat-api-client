@@ -33,6 +33,27 @@ class EurostatAPIClient(object):
         self.version = version
         self.response_type = response_type
         self.language = language
+        
+    def set_proxy(self, proxy_dict):
+        """Set a proxy for the requests.
+
+        For example:
+        ```python3
+        {
+            'http':'http://my.proxy:8080',
+            'https':'http://my.proxy:8080'
+        }
+        ```
+        For more information see requests documentation.
+        https://2.python-requests.org/en/master/user/advanced/#proxies
+
+        Parameters
+        ----------
+        proxy_dict : dict
+            a dictionary of proxies to any request method
+            (see Requests documentation).
+        """
+        self.session.proxies.update(proxy_dict)
 
     @property
     def version(self):
