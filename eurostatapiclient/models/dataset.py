@@ -5,6 +5,7 @@ from ..utils.property_decorators import property_is_string,\
 from .dimension import Dimension
 from datetime import datetime
 import pandas as pd
+import re
 
 
 def dimension_list_size(item_list):
@@ -205,8 +206,11 @@ class Dataset(object):
         version = json.get("version")
         lang = extension.get("lang")
         source = json.get("source")
+        
         updated_raw = json.get("updated")
-        updated = datetime.strptime(updated_raw, '%Y-%m-%d')
+        date_regex = re.compile(r'\d{4}-\d{1,2}-\d{1,2}')
+        updated = datetime.strptime(updated_raw, '%Y-%m-%d') if updated_raw and date_regex.match(updated_raw) else datetime.now()
+        
         label = json.get("label")
         dataset = cls(
             id,
