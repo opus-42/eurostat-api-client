@@ -206,11 +206,17 @@ class Dataset(object):
         version = json.get("version")
         lang = extension.get("lang")
         source = json.get("source")
-        
+
         updated_raw = json.get("updated")
         date_regex = re.compile(r'\d{4}-\d{1,2}-\d{1,2}')
-        updated = datetime.strptime(updated_raw, '%Y-%m-%d') if updated_raw and date_regex.match(updated_raw) else datetime.now()
-        
+        if updated_raw and date_regex.match(updated_raw):
+            updated = datetime.strptime(
+                updated_raw,
+                '%Y-%m-%d'
+            )
+        else:
+            datetime.now()
+
         label = json.get("label")
         dataset = cls(
             id,
