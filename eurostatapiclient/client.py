@@ -26,7 +26,8 @@ class EurostatAPIClient(object):
     language
 
     """
-    BASE_URL = 'https://ec.europa.eu/eurostat/wdds/rest/data'
+    #BASE_URL = 'https://ec.europa.eu/eurostat/wdds/rest/data'
+    BASE_URL = 'https://ec.europa.eu/eurostat/api/dissemination/statistics'
     session = requests.Session()
 
     def __init__(self, version, response_type, language):
@@ -84,13 +85,21 @@ class EurostatAPIClient(object):
 
     @property
     def api_url(self):
-        return '{0}/{1}/{2}/{3}'.format(self.BASE_URL,
-                                        self.version,
-                                        self.response_type,
-                                        self.language)
+
+        self.response_type,
+        self.language
+        
+        return '{0}/{1}/data'.format(self.BASE_URL,
+                                     self.version)
 
     def get_dataset(self, id, params={}):
+        base_params = {
+        'format': self.response_type,
+        'lang': self.language }
+
+        params.update(base_params)
         request_url = '{0}/{1}'.format(self.api_url, id)
+        
         response = self.session.get(request_url, params=params)
         response.raise_for_status()
         return Dataset.create_from_json(response.json())

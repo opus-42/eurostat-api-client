@@ -66,7 +66,7 @@ class Dataset(object):
 
     def __init__(self, id, version, lang, source, updated, label):
         self.id = id
-        self.version = version
+        self.version = version # should now be equal to 1.0
         self.lang = lang
         self.source = source
         self.updated = updated
@@ -167,7 +167,7 @@ class Dataset(object):
 
         """
         if not isinstance(value_dict, dict):
-            raise ValueError("value_dict must be an instance of Dictonary")
+            raise ValueError("value_dict must be an instance of Dictionary")
 
         elif len(value_dict.items()) == self.total_size:
             self._values = [v for k, v in value_dict.items()]
@@ -202,12 +202,13 @@ class Dataset(object):
             raise ValueError("Json is not conformed. \
             Class field is not defined or value not equal to dataset")
 
-        id = extension.get("datasetId")
+        id = extension.get("id")
         version = json.get("version")
         lang = extension.get("lang")
         source = json.get("source")
-
-        updated_raw = json.get("updated")
+        # I'm only keeping the first 10 chars of the new date format
+        # to maintain compatibility with the code (not the best solution)
+        updated_raw = json.get("updated")[:10]
         date_regex = re.compile(r'\d{4}-\d{1,2}-\d{1,2}')
         if updated_raw and date_regex.match(updated_raw):
             updated = datetime.strptime(

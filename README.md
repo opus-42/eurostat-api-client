@@ -1,6 +1,6 @@
 # Eurostat API Client (Python)
 
-Use the Eurostat API Client to quickly retrieve json data from Eurostat REST service and convert it to a pandas DataFrame. A simple description of the service can be found [here](https://ec.europa.eu/eurostat/web/json-and-unicode-web-services/about-this-service)
+Use the Eurostat API Client to quickly retrieve json data from Eurostat REST service and convert it to a pandas DataFrame. A simple description of the service can be found [here](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
 
 ## Installation
 
@@ -17,8 +17,8 @@ This example shows how to retrieve a dataset and a pandas dataframe from it.
 ```python
 from eurostatapiclient import EurostatAPIClient
 
-# Choose service version : only v2.1 is currently available
-VERSION = 'v2.1'
+# Choose service version : only 1.0 is currently available
+VERSION = '1.0'
 
 # Only json is currently available
 FORMAT = 'json'
